@@ -3,28 +3,27 @@ import java.util.Scanner;
 
 public class Todolist {
     public static void main(String[] args) {
-        Scanner scan = new Scanner(System.in);
-        ArrayList<String> todolist = new ArrayList<String>();
-        
-        // While loop to keep displaying the main menu without having to callback to the main method
-        while(true){
-            System.out.println("1 to add to your To-do list");
-            System.out.println("2 to view to your To-do list");
-            System.out.println("3 to remove items from To-do list");
-            System.out.println("4 to exit");
-            int user_choice = scan.nextInt();
-            scan.nextLine();
-            
-            // If user_choice is 4 then we close the program by breaking the while loop
-            if(user_choice == 4){
-                System.out.println("Exiting the program");
-                break;
+        try (Scanner scan = new Scanner(System.in)) {
+            ArrayList<String> todolist = new ArrayList<>();
+            // While loop to keep displaying the main menu without having to callback to the main method
+            while (true) {
+                System.out.println("1 to add to your To-do list");
+                System.out.println("2 to view to your To-do list");
+                System.out.println("3 to remove items from To-do list");
+                System.out.println("4 to exit");
+                int user_choice = scan.nextInt();
+                scan.nextLine();
+                
+                // If user_choice is 4 then we close the program by breaking the while loop
+                if(user_choice == 4){
+                    System.out.println("Exiting the program");
+                    break;
+                }
+                // Else we just go to the todofunction method
+                todofunction(user_choice, todolist, scan);
             }
-            // Else we just go to the todofunction method
-            todofunction(user_choice, todolist, scan);
+            // Closing the Scanner object to prevent any leaks
         }
-        // Closing the Scanner object to prevent any leaks
-        scan.close();
     }
     public static void todofunction(int user_choice, ArrayList<String> todolist, Scanner scan){
         switch (user_choice) {
